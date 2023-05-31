@@ -1,7 +1,7 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #f2f2f2;
-    background-image: url("imagenes/fondo1.jpeg");
+    background-image: url(imagenes/fondo5.jpeg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -9,36 +9,43 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh; 
+
   }
   
   .container {
     width: 600px;
-    margin: 0 auto;
-    padding: 50px;
-    border-radius: 10px;
+    margin:auto; 
+    padding: 5px 30px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
     background-color: #fff;
+
   }
   
   .container h2 {
     text-align: center;
     margin-bottom: 20px;
   }
+
   
   .container label {
     display: block;
     margin-bottom: 10px;
-    color: #666;
   }
   
   .container input[type="text"],
-  .container input[type="email"],
-  .container input[type="password"],
-  .container select {
+  .container textarea,
+  .container input[type="date"] {
     width: 100%;
     padding: 8px;
-    margin-bottom: 10px;
+    margin-bottom: 10px; 
     border: 1px solid #ccc;
     border-radius: 4px;
+    
+  }
+  
+  .container textarea {
+    resize: vertical;
   }
   
   .container input[type="submit"] {
@@ -46,19 +53,13 @@ body {
     padding: 10px;
     border: none;
     border-radius: 4px;
-    background-color: #098f7d;
+    background-color: #3498db;
     color: #fff;
-    /* text-transform: uppercase; */
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    margin-bottom: 10px;
   }
   
   .container input[type="submit"]:hover {
-    background-color: #076861;
+    background-color: #2980b9;
   }
   
-
-
-
-  
-   
