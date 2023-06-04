@@ -64,7 +64,7 @@ class AlmacenBebidas:
         clasificacion = input("Ingrese la clasificación de la bebida: ")
         marca = input("Ingrese la marca de la bebida: ")
     
-        bebida = Bebidas(id, nombre, clasificacion, marca, precio)
+        bebida = Bebidas(id, nombre, precio, clasificacion, marca,)
         self.bebidas.append(bebida)
         print("Bebida agregada correctamente.")
         
@@ -118,6 +118,7 @@ class AlmacenBebidas:
             total_precios = sum(bebida.precio for bebida in self.bebidas)
             promedio = total_precios / len(self.bebidas)
             print(f'El precio promedio de las bebidas es: {promedio}')
+            
             
     def BebidaMarca(self, marca):
         cantidad = sum(1 for bebida in self.bebidas if bebida.marca == marca)

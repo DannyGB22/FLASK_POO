@@ -21,7 +21,7 @@ while True:
     if seleccion == "1":
      almacen.DarAlta()
     elif seleccion == "2": 
-        id = int(input("Ingrese el ID de la bebida que desea eliminar"))
+        id = int(input("Ingrese el ID de la bebida que desea eliminar: "))
         almacen.DarBaja(id)
     elif seleccion == "3":
         id = int(input("Ingrese el ID de la bebida que desea actualizar: "))
@@ -29,7 +29,7 @@ while True:
     elif seleccion == "4":
         almacen.Mostrar()
     elif seleccion == "5":
-        almacen.PrecioPromedio()
+        almacen.PrecioPromedio()  
     elif seleccion == "6":
         marca = input("Ingrese la marca de bebidas que desea buscar: ")
         almacen.BebidaMarca(marca)
