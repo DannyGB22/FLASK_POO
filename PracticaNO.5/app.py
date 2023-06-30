@@ -19,7 +19,14 @@ mysql = MySQL(app)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    curSelect = mysql.connection.cursor()
+    curSelect.execute('select * from albums')
+    consulta= curSelect.fetchall()
+    print(consulta)
+    
+    return render_template('index.html', listAlbums = consulta)
+
+
 
 
 @app.route('/guardar', methods=['POST'])
@@ -39,7 +46,11 @@ def guardar():
 @app.route('/Eliminar')
 def eliminar():
     return "Se elimino el album en la BD"
+
+
+
 # Ejecucion 
 if __name__ == '__main__':
     app.run(port= 5000, debug = True)
-    
+
+
