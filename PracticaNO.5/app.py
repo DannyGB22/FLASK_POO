@@ -43,12 +43,41 @@ def guardar():
     flash('Album Agregado correctamente')    
     return redirect(url_for('index'))
 
-@app.route('/Eliminar')
-def eliminar():
-    return "Se elimino el album en la BD"
+# @app.route('/Eliminar')
+# def eliminar():
+#     return "Se elimino el album en la BD"
 
 
+@app.route('/editar/<id>')
+def EditarALB(id):
+    curEditar= mysql.connection.cursor()
+    curEditar.execute('select * from albums where id= %s', (id,))
+    consultaID= curEditar.fetchone()
+    
+    return render_template('EditarAlbum.html', album= consultaID)
 
+@app.route('/actualizar/<id>', methods=['POST'])
+def Actualizar(id):
+    if request.method == 'POST':
+        Vtitulo= request.form['txtTitulo']
+        Vartista= request.form['txtArtista']
+        Vanio= request.form['txtAnio']
+        CurAct = mysql.connection.cursor()
+        CurAct.execute('update albums set titulo= %s, artista =%s, anio= %s where id = %s', (Vtitulo, Vartista, Vanio, id))
+        mysql.connection.commit()
+    flash('Album Actualizado correctamente')    
+    return redirect(url_for('index'))
+
+@app.route('/eliminar/<id>')
+def EliminarALB(id):
+    curEditar= mysql.connection.cursor()
+    curEditar.execute('select * from albums where id= %s', (id,))
+    consultaID= curEditar.fetchone()
+    
+    return render_template('EliminarAlbum.html', album= consultaID)
+
+
+        
 # Ejecucion 
 if __name__ == '__main__':
     app.run(port= 5000, debug = True)
