@@ -70,15 +70,24 @@ def Actualizar(id):
 
 @app.route('/eliminar/<id>')
 def EliminarALB(id):
-    curEditar= mysql.connection.cursor()
-    curEditar.execute('select * from albums where id= %s', (id,))
-    consultaID= curEditar.fetchone()
+    curEliminar= mysql.connection.cursor()
+    curEliminar.execute('select * from albums where id= %s', (id,))
+    consultaID= curEliminar.fetchone()
     
     return render_template('EliminarAlbum.html', album= consultaID)
 
-
+@app.route('/eliminarAlb/<id>', methods=['POST'])
+def eliminarRG(id):
+    if request.method == 'POST':
+        CurDel = mysql.connection.cursor()
+        CurDel.execute('DELETE FROM albums WHERE id = %s', (id,))
+        mysql.connection.commit()
+    flash('Album eliminado correctamente')    
+    return redirect(url_for('index'))
+    
         
 # Ejecucion 
+
 if __name__ == '__main__':
     app.run(port= 5000, debug = True)
 
