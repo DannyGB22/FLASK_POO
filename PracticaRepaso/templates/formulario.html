@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>La Toronjita</title>
+</head>
+<body>
+    {%with mensajes= get_flashed_messages() %}
+      {% if mensajes%}
+        {%for msj in mensajes%}
+          <h3>{{ msj }}</h3>
+      {%endfor%}
+     {% endif %}
+    {%endwith%}
+    <br>
+    <br>
+    <center><h1>Fruteria la Toronjita</h1></center>
+    <center>
+    <br>
+
+    <form action="/insertar" method="POST">
+
+        <input type="text" name="txtFruta" placeholder="Escribe el nombre de la fruta">
+        <input type="text" name="txtTemporada" placeholder="Escribe la temporada">
+        <input type="number" name="txtPrecio" placeholder="Escribe el precio">
+        <input type="number" name="txtStock" placeholder="Escribe la cantidad en el Stock">
+
+        <button type="submit">Guardar</button>
+    </form>
+    </center>
+
+   
+    
+</body>
+</html>

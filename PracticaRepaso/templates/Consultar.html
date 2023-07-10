@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Consultar Frutas</title>
+</head>
+<body>
+    <center>
+    <h1>Consultar Frutas</h1>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flash-messages">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    
+    <form method="POST" action="{{ url_for('buscar') }}">
+        <label for="nombre">Nombre de la fruta:</label>
+        <input type="text" id="nombre" name="txtFruta" required>
+        <button type="submit">Consultar</button>
+    </form>
+
+    {% if frutas %}
+        <h2>Resultados:</h2>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Fruta</th>
+                <th>Temporada</th>
+                <th>Precio</th>
+                <th>Stock</th>
+            </tr>
+            {% for fruta in frutas %}
+                <tr>
+                    <td>{{ fruta[0] }}</td>
+                    <td>{{ fruta[1] }}</td>
+                    <td>{{ fruta[2] }}</td>
+                    <td>{{ fruta[3] }}</td>
+                    <td>{{ fruta[4] }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+</center>
+</body>
+</html>
