@@ -19,6 +19,10 @@ def index():
 def formulario():
     return render_template('formulario.html')
 
+@app.route('/menu')
+def rgmenu():
+   return render_template('menu.html')
+
 @app.route('/insertar', methods=['POST'])
 def insertar():
     if request.method == 'POST':
@@ -32,6 +36,31 @@ def insertar():
     flash('Registro agregado Correctamente')    
     return redirect(url_for('formulario'))
        
+
+@app.route('/registros')
+def registrosf():
+    curSelect = mysql.connection.cursor()
+    curSelect.execute('select * from tbflores')
+    consulta= curSelect.fetchall()
+    # print(consulta)
+    return render_template('registrosform.html', listRegistro= consulta)
+
+@app.route('/eliminar/<id>')
+def eliminarf(id):
+    curEliminar= mysql.connection.cursor()
+    curEliminar.execute('select * from tbflores where id= %s', (id,))
+    consultaID= curEliminar.fetchone()
+    return render_template('eliminarRG.html', floreria = consultaID)
+
+
+@app.route('/eliminarRG/<id>' , methods= ['POST'])
+def eliminarRGf(id):
+    if request.method == 'POST':
+        CurDel = mysql.connection.cursor()
+        CurDel.execute('DELETE FROM tbflores WHERE id = %s', (id,))
+        mysql.connection.commit()
+    flash('registro eliminado correctamente')    
+    return redirect(url_for('registrosf'))
 
 
     
