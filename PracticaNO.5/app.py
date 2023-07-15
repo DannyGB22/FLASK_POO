@@ -31,12 +31,10 @@ def index():
 
 @app.route('/guardar', methods=['POST'])
 def guardar():
-    if request.method== 'POST':
+    if request.method == 'POST':
         Vtitulo= request.form['txtTitulo']
         Vartista= request.form['txtArtista']
         Vanio= request.form['txtAnio']
-        # print(titulo, artista, anio)
-        #declaramos una variable tipo curor para ejecutar los querys
         CS= mysql.connection.cursor()
         CS.execute('insert into albums(titulo, artista, anio) values(%s, %s, %s)',(Vtitulo, Vartista, Vanio))
         mysql.connection.commit()
