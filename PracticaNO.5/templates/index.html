@@ -3,61 +3,78 @@
 
 {%block body%}
 
-    
+
 
     {%with mensajes= get_flashed_messages() %}
-      {% if mensajes%}
-        {%for msj in mensajes%}
-          <h3>{{ msj }}</h3>
-      {%endfor%}
-     {% endif %}
+    {% if mensajes%}
+    {%for msj in mensajes%}
+    <h3>{{ msj }}</h3>
+    {%endfor%}
+    {% endif %}
     {%endwith%}
-    
-    
-    <h1>Gestion de Album</h1>
 
-    <div class="row">
-        <div class="col-md-5">
-            <form action="/guardar" method="POST">
 
-                <input type="text" name="txtTitulo" placeholder="Escribe el titulo">
-                <input type="text" name="txtArtista" placeholder="Escribe el Artista">
-                <input type="number" name="txtAnio" placeholder="Escribe el Año">
-        
-                <button type="submit">Guardar</button>
-            </form>
-        </div>
-        <div class="col-md-7">
-            <h1>Albums Guardados</h1>
-    
+    <h1 class="display-1 text-center mt-5 mb-5">Gestion de Album</h1>
+    <div class="container">
 
-    <table>
-    <thead>
-        <tr>
-            <td>ID:</td>
-            <td>Nombre:</td>
-            <td>Artista:</td>
-            <td>Año de publicacion:</td>
-        </tr>
-    </thead>
-    <tbody>
-        {%for alb in listAlbums %}
-        <tr>
-            <td>{{alb.0}}</td>
-            <td>{{alb.1}}</td>
-            <td>{{alb.2}}</td>
-            <td>{{alb.3}}</td>
-            <td>
-            <a href="/editar/{{alb.0}}">Editar</a>
-            <a href="/eliminar/{{alb.0}}">Eliminar</a>
-            </td>
-        </tr>
-        {%endfor %}
-    </tbody>
-   </table>
+        <div class="row">
+            <div class="col-md-5">
+                <div class="card card body">
+                    <form action="/guardar" method="POST">
+
+                        <div class="mb-3">
+                            <input type="text" class="form-control" name="txtTitulo" placeholder="Escribe el titulo">
+                        </div>
+
+                        <div class="mb-3">
+                            <input type="text" class="form-control" name="txtArtista" placeholder="Escribe el Artista">
+                        </div>
+
+                        <div class="mb-3">
+                            <input type="number" class="form-control" name="txtAnio" placeholder="Escribe el Año">
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-outline-success">Guardar</button>
+                        </div>
+                    </form>
+            </div> <!-- colum5 -->
+
+                <div class="col-md-7">
+                 
+
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <td>ID:</td>
+                                <td>Nombre:</td>
+                                <td>Artista:</td>
+                                <td>Año de publicacion:</td>
+                                <td>Acciones</td>
+                                <td>Acciones</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {%for alb in listAlbums %}
+                            <tr>
+                                <td>{{alb.0}}</td>
+                                <td>{{alb.1}}</td>
+                                <td>{{alb.2}}</td>
+                                <td>{{alb.3}}</td>
+                                <td>
+                                    <a href="/editar/{{alb.0}}" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
+
+                                </td>
+
+                                <td>
+                                    <a href="/eliminar/{{alb.0}}" class="btn btn-warning"><i class="bi bi-trash3"></i></a>
+                                </td>
+                            </tr>
+                            {%endfor %}
+                        </tbody>
+                    </table>
+            </div> <!-- colum-7 -->
         </div>
     </div>
- 
-    
 
 {%endblock%}
