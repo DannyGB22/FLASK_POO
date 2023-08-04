@@ -4,40 +4,44 @@
 {%block body%}
 
 
+    <h1 class="display-1 text-center mt-5 mb-5 text-white">Gestion de Album</h1>
+    <div class="container mb-5">
+        {%with mensajes= get_flashed_messages() %}
+        {% if mensajes%}
+          {%for msj in mensajes%}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>{{msj}}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          <script>Swal.fire('Completado','Finalizamos con exito el CRUD!','success')/</script>
 
-    {%with mensajes= get_flashed_messages() %}
-    {% if mensajes%}
-    {%for msj in mensajes%}
-    <h3>{{ msj }}</h3>
-    {%endfor%}
-    {% endif %}
-    {%endwith%}
-
-
-    <h1 class="display-1 text-center mt-5 mb-5">Gestion de Album</h1>
-    <div class="container">
-
+        {%endfor%}
+      {% endif %}
+      {%endwith%}
         <div class="row">
             <div class="col-md-5">
-                <div class="card card body">
+                <div class="card card-body">
                     <form action="/guardar" method="POST">
+                        <h4 class="text-center" >Registrar Álbum</h4>
 
                         <div class="mb-3">
-                            <input type="text" class="form-control" name="txtTitulo" placeholder="Escribe el titulo">
+                            <input type="text" class="form-control" name="txtTitulo" placeholder="Escribe el titulo" required>
                         </div>
 
                         <div class="mb-3">
-                            <input type="text" class="form-control" name="txtArtista" placeholder="Escribe el Artista">
+                            <input type="text" class="form-control" name="txtArtista" placeholder="Escribe el Artista" required>
                         </div>
 
                         <div class="mb-3">
-                            <input type="number" class="form-control" name="txtAnio" placeholder="Escribe el Año">
+                            <input type="number" class="form-control" name="txtAnio" placeholder="Escribe el Año" required>
                         </div>
 
                         <div class="d-grid gap-2">
                             <button type="submit" class="btn btn-outline-success">Guardar</button>
                         </div>
+              
                     </form>
+                </div>
             </div> <!-- colum5 -->
 
                 <div class="col-md-7">
@@ -45,13 +49,13 @@
 
                     <table class="table table-hover">
                         <thead>
-                            <tr>
+                            <tr class="bg-dark">
                                 <td>ID:</td>
                                 <td>Nombre:</td>
                                 <td>Artista:</td>
                                 <td>Año de publicacion:</td>
-                                <td>Acciones</td>
-                                <td>Acciones</td>
+                                <td>Editar</td>
+                                <td>Eliminar</td>
                             </tr>
                         </thead>
                         <tbody>
@@ -76,5 +80,35 @@
             </div> <!-- colum-7 -->
         </div>
     </div>
+
+    {% with mensajes = get_flashed_messages(with_categories=True) %}
+            {% if mensajes %}
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        {% for category, message in mensajes %}
+                            {% if category == 'error' %}
+                                Swal.fire({
+                                    position: 'center',
+                                    icon: 'error',
+                                    text: "{{ message }}",
+                                    showConfirmButton: true,
+                                    timer: 5000
+                                });
+                            {% else %}
+                                Swal.fire({
+                                    position: 'center',
+                                    icon: 'success',
+                                    text: "{{ message }}",
+                                    showConfirmButton: true,
+                                    timer: 5000
+                                });
+                            {% endif %}
+                        {% endfor %}
+                    });
+                </script>
+            {% endif %}
+        {% endwith %}
+
+        
 
 {%endblock%}

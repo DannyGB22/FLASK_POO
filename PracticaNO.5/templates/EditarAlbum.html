@@ -3,20 +3,35 @@
 
 {%block body%}
 
-    <center>
-    <br>
-    <h1>Actuaizar Album</h1>
-    <br>
-    <br>
-    
-    <form action="/actualizar/{{album.0}}" method="POST">
 
-        <input type="text" name="txtTitulo" value="{{album.1}}">
-        <input type="text" name="txtArtista" value="{{album.2}}">
-        <input type="number" name="txtAnio" value="{{album.3}}">
+        <div class="row justify-content-center ">
+            <div class="col-md-6 mt-5 rounded p-4 shadow-sm ">
+                
+               
+                <div class="border rounded p-4 bg-dark text-white">
+                    <form class="text-center"  action="/actualizar/{{album.0}}" method="POST">
+                        <div class="text-center mb-4 text-white">
+                            <h1>Actualizar Álbum</h1>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtTitulo">Título</label>
+                            <input type="text" name="txtTitulo" id="txtTitulo" class="form-control" value="{{album.1}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="txtArtista">Artista</label>
+                            <input type="text" name="txtArtista" id="txtArtista" class="form-control" value="{{album.2}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="txtAnio">Año</label>
+                            <input type="number" name="txtAnio" id="txtAnio" class="form-control" value="{{album.3}}">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block mt-4 ">Actualizar</button>
+                    </form>
+                </div>
+                
+            </div>
+        </div>
 
-        <button type="submit">Actualizar</button>
-    </form>
-    </center>
+
     
 {%endblock%}

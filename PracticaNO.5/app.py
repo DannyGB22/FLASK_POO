@@ -4,7 +4,7 @@ from flask_mysqldb import MySQL
 
 #Estamos declarando el app y le estamos asignando un nombre
 # Inicializacion del servidor flask
-app= Flask(__name__)
+app= Flask(__name__,static_folder='static')
 # Configuraciones para la conexion con la BD
 app.config['MYSQL_HOST']= "localhost"
 app.config['MYSQL_USER']= "root"
